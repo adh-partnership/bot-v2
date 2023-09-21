@@ -12,21 +12,21 @@ positions:
     suffix: ["FSS"]
 - name: Enroute
   callsigns:
-    prefix: ["HNL"]
+    prefix:
+    - HNL
+    - GUM
     suffix: ["CTR"]
-- name: Honolulu Approach
+- name: Approach/Departure
   callsigns:
-    prefix: ["HNL"]
+    prefix:
+    - HNL
+    - OGG
+    - ITO
+    - HNG
+    - SPN
+    - GUM
     suffix: ["APP"]
-- name: Maui Approach
-  callsigns:
-    prefix: ["OGG"]
-    suffix: ["APP"]
-- name: Hilo Approach
-  callsigns:
-    prefix: ["HNL"]
-    suffix: ["APP"]
-- name: CAB
+- name: Cab Positions
   callsigns:
     prefix:
     - BKH
