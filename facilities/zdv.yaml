@@ -118,9 +118,6 @@ roles:
     if:
       - condition: controller_type
         value: none
-  - id: 1149167444267630663
-    name: unverified
-    if:
       - condition: unknown
         value: true
   - id: 712839474433884222

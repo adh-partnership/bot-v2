@@ -57,7 +57,7 @@ func RemoveRoleFromUser(user *models.User, role *models.Role) error {
 func GetEvents(limit int) ([]*models.Event, error) {
 	var events []*models.Event
 
-	c := DB.Preload(clause.Associations).Where("start_date > ?", time.Now()).Order("start_date asc")
+	c := DB.Preload(clause.Associations).Where("end_date > ?", time.Now()).Order("start_date asc")
 	if limit > 0 {
 		c = c.Limit(limit)
 	}
@@ -116,6 +116,15 @@ func FindUsersWithRole(role string) ([]models.User, error) {
 	}
 
 	return users, nil
+}
+
+func FindUserCertifications(user *models.User) ([]*models.UserCertification, error) {
+	var certs []*models.UserCertification
+	if err := DB.Where(models.UserCertification{CID: user.CID}).Find(&certs).Error; err != nil {
+		return nil, err
+	}
+
+	return certs, nil
 }
 
 func FindUserByCID(cid string) (*models.User, error) {
@@ -315,4 +324,13 @@ func FindTrainingSessionRequestWithFilter(f *TrainingSessionRequestFilter) ([]*m
 	}
 
 	return requests, nil
+}
+
+func FindAPIKey(key string) (*models.APIKeys, error) {
+	apikey := &models.APIKeys{}
+	if err := DB.Where(models.APIKeys{Key: key}).First(apikey).Error; err != nil {
+		return nil, err
+	}
+
+	return apikey, nil
 }

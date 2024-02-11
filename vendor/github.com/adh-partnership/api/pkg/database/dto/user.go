@@ -22,44 +22,51 @@ import (
 )
 
 type UserResponse struct {
-	CID                  uint                       `json:"cid" yaml:"cid" xml:"cid"`
-	FirstName            string                     `json:"first_name" yaml:"first_name" xml:"first_name"`
-	LastName             string                     `json:"last_name" yaml:"last_name" xml:"last_name"`
-	OperatingInitials    string                     `json:"operating_initials" yaml:"operating_initials" xml:"operating_initials"`
-	ControllerType       string                     `json:"controller_type" yaml:"controller_type" xml:"controller_type"`
-	Certifications       UserResponseCertifications `json:"certifications" yaml:"certifications" xml:"certifications"`
-	Rating               string                     `json:"rating" yaml:"rating" xml:"rating"`
-	Status               string                     `json:"status" yaml:"status" xml:"status"`
-	Roles                []string                   `json:"roles" yaml:"roles" xml:"roles"`
-	Region               string                     `json:"region" yaml:"region" xml:"region"`
-	Division             string                     `json:"division" yaml:"division" xml:"division"`
-	Subdivision          string                     `json:"subdivision" yaml:"subdivision" xml:"subdivision"`
-	DiscordID            string                     `json:"discord_id" yaml:"discord_id" xml:"discord_id"`
-	RosterJoinDate       string                     `json:"roster_join_date" yaml:"roster_join_date" xml:"roster_join_date"`
-	ExemptedFromActivity *bool                      `json:"exempted_from_activity" yaml:"exempted_from_activity" xml:"exempted_from_activity"`
-	CreatedAt            string                     `json:"created_at" yaml:"created_at" xml:"created_at"`
-	UpdatedAt            string                     `json:"updated_at" yaml:"updated_at" xml:"updated_at"`
+	CID                  uint                                   `json:"cid" yaml:"cid" xml:"cid"`
+	FirstName            string                                 `json:"first_name" yaml:"first_name" xml:"first_name"`
+	LastName             string                                 `json:"last_name" yaml:"last_name" xml:"last_name"`
+	OperatingInitials    string                                 `json:"operating_initials" yaml:"operating_initials" xml:"operating_initials"`
+	ControllerType       string                                 `json:"controller_type" yaml:"controller_type" xml:"controller_type"`
+	Certifications       map[string]*UserResponseCertifications `json:"certifications" yaml:"certifications" xml:"certifications"`
+	Rating               string                                 `json:"rating" yaml:"rating" xml:"rating"`
+	Status               string                                 `json:"status" yaml:"status" xml:"status"`
+	Roles                []string                               `json:"roles" yaml:"roles" xml:"roles"`
+	Region               string                                 `json:"region" yaml:"region" xml:"region"`
+	Division             string                                 `json:"division" yaml:"division" xml:"division"`
+	Subdivision          string                                 `json:"subdivision" yaml:"subdivision" xml:"subdivision"`
+	DiscordID            string                                 `json:"discord_id" yaml:"discord_id" xml:"discord_id"`
+	RosterJoinDate       string                                 `json:"roster_join_date" yaml:"roster_join_date" xml:"roster_join_date"`
+	ExemptedFromActivity *bool                                  `json:"exempted_from_activity" yaml:"exempted_from_activity" xml:"exempted_from_activity"`
+	CreatedAt            string                                 `json:"created_at" yaml:"created_at" xml:"created_at"`
+	UpdatedAt            string                                 `json:"updated_at" yaml:"updated_at" xml:"updated_at"`
 }
 
 type UserResponseAdmin struct {
-	CID                  uint                       `json:"cid" yaml:"cid" xml:"cid"`
-	FirstName            string                     `json:"first_name" yaml:"first_name" xml:"first_name"`
-	LastName             string                     `json:"last_name" yaml:"last_name" xml:"last_name"`
-	OperatingInitials    string                     `json:"operating_initials" yaml:"operating_initials" xml:"operating_initials"`
-	ControllerType       string                     `json:"controller_type" yaml:"controller_type" xml:"controller_type"`
-	Certifications       UserResponseCertifications `json:"certifications" yaml:"certifications" xml:"certifications"`
-	RemovalReason        string                     `json:"removal_reason" yaml:"removal_reason" xml:"removal_reason"`
-	Rating               string                     `json:"rating" yaml:"rating" xml:"rating"`
-	Status               string                     `json:"status" yaml:"status" xml:"status"`
-	Roles                []string                   `json:"roles" yaml:"roles" xml:"roles"`
-	Region               string                     `json:"region" yaml:"region" xml:"region"`
-	Division             string                     `json:"division" yaml:"division" xml:"division"`
-	Subdivision          string                     `json:"subdivision" yaml:"subdivision" xml:"subdivision"`
-	DiscordID            string                     `json:"discord_id" yaml:"discord_id" xml:"discord_id"`
-	ExemptedFromActivity *bool                      `json:"exempted_from_activity" yaml:"exempted_from_activity" xml:"exempted_from_activity"`
-	RosterJoinDate       string                     `json:"roster_join_date" yaml:"roster_join_date" xml:"roster_join_date"`
-	CreatedAt            string                     `json:"created_at" yaml:"created_at" xml:"created_at"`
-	UpdatedAt            string                     `json:"updated_at" yaml:"updated_at" xml:"updated_at"`
+	CID                  uint                                   `json:"cid" yaml:"cid" xml:"cid"`
+	FirstName            string                                 `json:"first_name" yaml:"first_name" xml:"first_name"`
+	LastName             string                                 `json:"last_name" yaml:"last_name" xml:"last_name"`
+	OperatingInitials    string                                 `json:"operating_initials" yaml:"operating_initials" xml:"operating_initials"`
+	ControllerType       string                                 `json:"controller_type" yaml:"controller_type" xml:"controller_type"`
+	Certifications       map[string]*UserResponseCertifications `json:"certifications" yaml:"certifications" xml:"certifications"`
+	RemovalReason        string                                 `json:"removal_reason" yaml:"removal_reason" xml:"removal_reason"`
+	Rating               string                                 `json:"rating" yaml:"rating" xml:"rating"`
+	Status               string                                 `json:"status" yaml:"status" xml:"status"`
+	Roles                []string                               `json:"roles" yaml:"roles" xml:"roles"`
+	Region               string                                 `json:"region" yaml:"region" xml:"region"`
+	Division             string                                 `json:"division" yaml:"division" xml:"division"`
+	Subdivision          string                                 `json:"subdivision" yaml:"subdivision" xml:"subdivision"`
+	DiscordID            string                                 `json:"discord_id" yaml:"discord_id" xml:"discord_id"`
+	ExemptedFromActivity *bool                                  `json:"exempted_from_activity" yaml:"exempted_from_activity" xml:"exempted_from_activity"`
+	RosterJoinDate       string                                 `json:"roster_join_date" yaml:"roster_join_date" xml:"roster_join_date"`
+	CreatedAt            string                                 `json:"created_at" yaml:"created_at" xml:"created_at"`
+	UpdatedAt            string                                 `json:"updated_at" yaml:"updated_at" xml:"updated_at"`
+}
+
+type UserResponseCertifications struct {
+	DisplayName string `json:"display_name" yaml:"display_name" xml:"display_name"`
+	Value       string `json:"value" yaml:"value" xml:"value"`
+	Order       uint   `json:"order" yaml:"order" xml:"order"`
+	Hidden      bool   `json:"hidden" yaml:"hidden" xml:"hidden"`
 }
 
 type VisitorResponse struct {
@@ -67,17 +74,6 @@ type VisitorResponse struct {
 	User      *UserResponse `json:"user" yaml:"user" xml:"user"`
 	CreatedAt string        `json:"created_at" yaml:"created_at" xml:"created_at"`
 	UpdatedAt string        `json:"updated_at" yaml:"updated_at" xml:"updated_at"`
-}
-
-type UserResponseCertifications struct {
-	Ground        string `json:"ground" yaml:"ground" xml:"ground"`
-	MajorGround   string `json:"major_ground" yaml:"major_ground" xml:"major_ground"`
-	Local         string `json:"local" yaml:"local" xml:"local"`
-	MajorLocal    string `json:"major_local" yaml:"major_local" xml:"major_local"`
-	Approach      string `json:"approach" yaml:"approach" xml:"approach"`
-	MajorApproach string `json:"major_approach" yaml:"major_approach" xml:"major_approach"`
-	Enroute       string `json:"enroute" yaml:"enroute" xml:"enroute"`
-	Oceanic       string `json:"oceanic" yaml:"oceanic" xml:"oceanic"`
 }
 
 type FacilityStaffResponse struct {
@@ -106,22 +102,39 @@ func ConvUserToUserResponse(user *models.User) *UserResponse {
 		}
 	}
 
+	userCerts, err := database.FindUserCertifications(user)
+	certs := map[string]*UserResponseCertifications{}
+	if err == nil {
+		for _, cert := range userCerts {
+			certs[cert.Name] = &UserResponseCertifications{
+				Value: cert.Value,
+			}
+		}
+	}
+
+	// Fill in other certifications with "none"
+	for _, c := range database.GetCertifications() {
+		if _, ok := certs[c.Name]; !ok {
+			certs[c.Name] = &UserResponseCertifications{
+				DisplayName: c.DisplayName,
+				Value:       "none",
+				Order:       c.Order,
+				Hidden:      c.Hidden,
+			}
+		} else {
+			certs[c.Name].DisplayName = c.DisplayName
+			certs[c.Name].Order = c.Order
+			certs[c.Name].Hidden = c.Hidden
+		}
+	}
+
 	u := &UserResponse{
-		CID:               user.CID,
-		FirstName:         user.FirstName,
-		LastName:          user.LastName,
-		OperatingInitials: user.OperatingInitials,
-		ControllerType:    user.ControllerType,
-		Certifications: UserResponseCertifications{
-			Ground:        user.GndCertification,
-			MajorGround:   user.MajorGndCertification,
-			Local:         user.LclCertification,
-			MajorLocal:    user.MajorLclCertification,
-			Approach:      user.AppCertification,
-			MajorApproach: user.MajorAppCertification,
-			Enroute:       user.CtrCertification,
-			Oceanic:       user.OceanicCertification,
-		},
+		CID:                  user.CID,
+		FirstName:            user.FirstName,
+		LastName:             user.LastName,
+		OperatingInitials:    user.OperatingInitials,
+		ControllerType:       user.ControllerType,
+		Certifications:       certs,
 		Roles:                roles,
 		Rating:               user.Rating.Short,
 		Status:               user.Status,
@@ -180,67 +193,43 @@ func PatchUserFromUserResponse(user *models.User, userResponse UserResponseAdmin
 		}
 	}
 
-	if userResponse.Certifications.Ground != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.Ground]; !ok {
-			errs = append(errs, ErrInvalidCertification)
+	if userResponse.Certifications != nil {
+		userCerts, err := database.FindUserCertifications(user)
+		if err != nil {
+			errs = append(errs, err.Error())
 		} else {
-			user.GndCertification = userResponse.Certifications.Ground
-		}
-	}
+			for certName, certValue := range userResponse.Certifications {
+				if !database.ValidCertification(certName) {
+					errs = append(errs, ErrInvalidCertification)
+					continue
+				}
 
-	if userResponse.Certifications.MajorGround != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.MajorGround]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.MajorGndCertification = userResponse.Certifications.MajorGround
-		}
-	}
+				found := false
+				if _, ok := models.CertificationOptions[certValue.Value]; !ok {
+					errs = append(errs, ErrInvalidCertification)
+					continue
+				}
 
-	if userResponse.Certifications.Local != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.Local]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.LclCertification = userResponse.Certifications.Local
-		}
-	}
+				for _, cert := range userCerts {
+					if cert.Name == certName {
+						cert.Value = certValue.Value
+						if err := database.DB.Save(cert).Error; err != nil {
+							errs = append(errs, err.Error())
+						}
+						found = true
+					}
+				}
 
-	if userResponse.Certifications.MajorLocal != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.MajorLocal]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.MajorLclCertification = userResponse.Certifications.MajorLocal
-		}
-	}
-
-	if userResponse.Certifications.Approach != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.Approach]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.AppCertification = userResponse.Certifications.Approach
-		}
-	}
-
-	if userResponse.Certifications.MajorApproach != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.MajorApproach]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.MajorAppCertification = userResponse.Certifications.MajorApproach
-		}
-	}
-
-	if userResponse.Certifications.Enroute != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.Enroute]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.CtrCertification = userResponse.Certifications.Enroute
-		}
-	}
-
-	if userResponse.Certifications.Oceanic != "" {
-		if _, ok := models.CertificationOptions[userResponse.Certifications.Oceanic]; !ok {
-			errs = append(errs, ErrInvalidCertification)
-		} else {
-			user.OceanicCertification = userResponse.Certifications.Oceanic
+				if !found {
+					if err := database.DB.Create(&models.UserCertification{
+						CID:   user.CID,
+						Name:  certName,
+						Value: certValue.Value,
+					}).Error; err != nil {
+						errs = append(errs, err.Error())
+					}
+				}
+			}
 		}
 	}
 
