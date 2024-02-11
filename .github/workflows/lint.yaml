@@ -10,6 +10,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          make lint
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v5
+      with:
+        go-version: 1.22
+        cache: false
+    - uses: golangci/golangci-lint-action@v4
+      with:
+        version: v1.56.1
+    - run: |
+        make lint

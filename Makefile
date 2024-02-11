@@ -1,21 +1,34 @@
-RUN=./scripts/run.sh
-MAKE_CONTAINER=$(RUN) make --no-print-directory -e -f Makefile.core.mk
-FRONTEND_MAKE_CONTAINER=$(RUN) make --no-print-directory -C frontend -e -f Makefile
+FINDFILES=find . \( -path ./.git -o -path ./out -o -path ./.github -o -path ./vendor -o -path ./frontend/node_modules \) -prune -o -type f
+XARGS=xargs -0 -r
+RELEASE_LDFLAGS='-extldflags -static -s -w'
+BINARIES=./cmd/bot
 
-%:
-	@$(MAKE_CONTAINER) $@
+lint:
+	@${FINDFILES} -name '*.go' \( ! \( -name '*.gen.go' -o -name '*.pb.go' \) \) -print0 | ${XARGS} scripts/lint_go.sh
 
-default:
-	@$(MAKE_CONTAINER)
+.PHONY: default
+default: init build
 
-shell:
-	@$(RUN) /bin/bash
+.PHONY: init
+init:
+	@mkdir -p out
 
-serve:
-	@docker-compose up
+.PHONY: build
+build:
+	@LDFLAGS=${RELEASE_LDFLAGS} scripts/gobuild.sh out/ ${BINARIES}
 
+.PHONY: mod-vendor
+mod-vendor:
+	@go mod vendor
+
+.PHONY: dev
+dev:
+	@go run ./cmd/bot/main.go --log-level debug start
+
+.PHONY: clean
 clean:
-	@docker-compose down -v
-	@$(MAKE_CONTAINER) clean
+	@rm -rf out
 
-.PHONY: default shell clean serve
+.PHONY: dist-clean
+dist-clean: clean
+	@rm -rf vendor
