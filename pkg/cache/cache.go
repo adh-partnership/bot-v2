@@ -13,9 +13,7 @@ const (
 	DefaultExpiration = 0
 )
 
-var (
-	ErrorKeyNotFound = errors.New("key not found")
-)
+var ErrorKeyNotFound = errors.New("key not found")
 
 type Item struct {
 	Value      interface{}

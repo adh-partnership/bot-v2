@@ -22,8 +22,9 @@ import (
 	"os"
 
 	"github.com/adh-partnership/api/pkg/logger"
-	"github.com/vpaza/bot/pkg/cache"
 	"sigs.k8s.io/yaml"
+
+	"github.com/vpaza/bot/pkg/cache"
 )
 
 type Facility struct {

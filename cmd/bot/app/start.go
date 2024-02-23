@@ -31,7 +31,6 @@ import (
 
 	"github.com/vpaza/bot/internal/bot"
 	"github.com/vpaza/bot/internal/commands"
-	"github.com/vpaza/bot/internal/division"
 	"github.com/vpaza/bot/internal/facility"
 	"github.com/vpaza/bot/pkg/cache"
 	"github.com/vpaza/bot/pkg/config"
@@ -65,7 +64,6 @@ func newStartCommand() *cli.Command {
 
 			log.Infof("Creating in-memory cache...")
 			cacheService := cache.NewCache(context.Background(), time.Minute*3, time.Minute*3)
-			division.Cache = cacheService
 
 			log.Infof("Loading configuration...")
 			_, err := config.ParseConfig(c.String("config"))
