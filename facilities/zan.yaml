@@ -1,57 +1,63 @@
 facility: ZAN
-bot_name: ZAN Is The Best
+bot_name: ZAN Bot
 description: Anchorage ARTCC
 discord_id: "1013148343712632912"
-name_format: first_last
+name_format: first_last_initial_oi
 api: https://api.zanartcc.org
+base_url: https://www.zanartcc.org
 show_online: true
 online_channel: "1148858886087004230"
+no_controllers_online_message: "No controllers online."
+unknown_controllers:
+  enabled: true
+  channel: "1021096526606508113"
+  role_id: "1013148343771340813"
 positions:
-  - name: Oceanic
-    callsigns:
-      prefix:
-        - ZAN
-      suffix:
-        - FSS
-  - name: Enroute
-    callsigns:
-      prefix:
-        - ANC
-      suffix:
-        - CTR
-  - name: A11
-    callsigns:
-      prefix:
-        - ANC
-      suffix:
-        - APP
-  - name: FAI TRACON
-    callsigns:
-      prefix:
-        - FAI
-      suffix:
-        - APP
-  - name: CAB
-    callsigns:
-      prefix:
-        - ADQ
-        - AKN
-        - ANC
-        - BIG
-        - BET
-        - EIL
-        - EDF
-        - ENA
-        - FAI
-        - FBK
-        - FRN
-        - JNU
-        - LHD
-        - MRI
-      suffix:
-        - TWR
-        - GND
-        - DEL
+- name: Oceanic
+  callsigns:
+    prefix:
+    - ZAN
+    suffix:
+    - FSS
+- name: Enroute
+  callsigns:
+    prefix:
+    - ANC
+    suffix:
+    - CTR
+- name: A11 TRACON
+  callsigns:
+    prefix:
+    - ANC
+    suffix:
+    - APP
+- name: FAI TRACON
+  callsigns:
+    prefix:
+    - FAI
+    suffix:
+    - APP
+- name: Tower Cabs
+  callsigns:
+    prefix:
+    - ADQ
+    - AKN
+    - ANC
+    - BIG
+    - BET
+    - EIL
+    - EDF
+    - ENA
+    - FAI
+    - FBK
+    - FRN
+    - JNU
+    - LHD
+    - MRI
+    suffix:
+    - TWR
+    - GND
+    - DEL
 roles:
 - id: 1013148343771340813
   name: ZAN Senior Staff
@@ -116,7 +122,7 @@ roles:
   name: Visitors
   if:
   - condition: controller_type
-    value: visit
+    value: visitor
 - id: 1013148343729393783
   name: Pilot
   if:

@@ -1,0 +1,8 @@
+facility: ADH
+bot_name: ADH Bot
+description: ADH Partnership
+discord_id: "1192314746570022972"
+name_format: first_last
+api: https://api.zanartcc.org
+show_online: false
+roles:

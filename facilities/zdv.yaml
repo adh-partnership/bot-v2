@@ -2,171 +2,172 @@ facility: ZDV
 bot_name: ZDV Bot
 description: Denver ARTCC
 discord_id: "347946261338390529"
-name_format: first_last_initial
+name_format: first_last_initial_oi
 api: https://api.zdvartcc.org
+base_url: https://www.zdvartcc.org
 show_online: true
-online_channel: "1148188961387335818"
+online_channel: "1149342010180907058"
 positions:
-  - name: Enroute
-    callsigns:
-      prefix:
-        - DEN
-      suffix:
-        - CTR
-  - name: D01 TRACON
-    callsigns:
-      prefix:
-        - DEN
-        - GJT
-        - PUB
-      suffix:
-        - APP
-        - DEP
-  - name: COS TRACON
-    callsigns:
-      prefix:
-        - COS
-      suffix:
-        - APP
-        - DEP
-  - name: Other Terminal Radars
-    callsigns:
-      prefix:
-        - ASE
-        - CPR
-        - CYS
-        - RCA
-      suffix:
-        - APP
-        - DEP
-  - name: Cab Positions
-    callsigns:
-      prefix:
-        - APA
-        - ASE
-        - BJC
-        - BKF
-        - CFO
-        - COS
-        - CPR
-        - CYS
-        - DEN
-        - EGE
-        - FMN
-        - FNL
-        - GJT
-        - GUR
-        - PUB
-        - RAP
-        - RCA
-      suffix:
-        - TWR
-        - GND
-        - DEL
+- name: Enroute
+  callsigns:
+    prefix:
+    - DEN
+    suffix:
+    - CTR
+- name: D01 TRACON
+  callsigns:
+    prefix:
+    - DEN
+    - GJT
+    - PUB
+    suffix:
+    - APP
+    - DEP
+- name: COS TRACON
+  callsigns:
+    prefix:
+    - COS
+    suffix:
+    - APP
+    - DEP
+- name: Other Terminal Radars
+  callsigns:
+    prefix:
+    - ASE
+    - CPR
+    - CYS
+    - RCA
+    suffix:
+    - APP
+    - DEP
+- name: Cab Positions
+  callsigns:
+    prefix:
+    - APA
+    - ASE
+    - BJC
+    - BKF
+    - CFO
+    - COS
+    - CPR
+    - CYS
+    - DEN
+    - EGE
+    - FMN
+    - FNL
+    - GJT
+    - GUR
+    - PUB
+    - RAP
+    - RCA
+    suffix:
+    - TWR
+    - GND
+    - DEL
 roles:
-  - id: 481985190164692995
-    name: Senior Staff
-    if:
-      - condition: has_role
-        value: ATM
-      - condition: has_role
-        value: DATM
-      - condition: has_role
-        value: TA
-  - id: 447538332730261524
-    name: Staff
-    if:
-      - condition: has_role
-        value: EC
-      - condition: has_role
-        value: FE
-      - condition: has_role
-        value: WM
-  - id: 856059220629782528
-    name: Training Staff
-    if:
-      - condition: has_role
-        value: INS
-      - condition: has_role
-        value: MTR
-  - id: 755601811427033128
-    name: FE Team
-    if:
-      - condition: has_role
-        value: facilities
-      - condition: has_role
-        value: FE
-  - id: 759899335311228969
-    name: Events Team
-    if:
-      - condition: has_role
-        value: events
-      - condition: has_role
-        value: EC
-  - id: 479850679855480843
-    name: Members
-    if:
-      - condition: controller_type
-        value: home
-  - id: 479850869949595679
-    name: Visitors
-    if:
-      - condition: controller_type
-        value: visit
-  - id: 486356252281012225
-    name: Guest
-    if:
-      - condition: controller_type
-        value: none
-      - condition: unknown
-        value: true
-  - id: 712839474433884222
-    name: ADM
-    if:
-      - condition: rating
-        value: ADM
-  - id: 712839474509250572
-    name: SUP
-    if:
-      - condition: rating
-        value: SUP
-  - id: 712839475369082880
-    name: I3
-    if:
-      - condition: rating
-        value: I3
-  - id: 712839475734118460
-    name: I1
-    if:
-      - condition: rating
-        value: I1
-  - id: 712839476056948786
-    name: C3
-    if:
-      - condition: rating
-        value: C3
-  - id: 712839476153417730
-    name: C1
-    if:
-      - condition: rating
-        value: C1
-  - id: 712839476828962906
-    name: S3
-    if:
-      - condition: rating
-        value: S3
-  - id: 712839477235810374
-    name: S2
-    if:
-      - condition: rating
-        value: S2
-  - id: 712839477575417877
-    name: S1
-    if:
-      - condition: rating
-        value: S1
-  - id: 856059249881120769
-    name: OBS
-    if:
-      - condition: rating
-        value: OBS
+- id: 481985190164692995
+  name: Senior Staff
+  if:
+  - condition: has_role
+    value: ATM
+  - condition: has_role
+    value: DATM
+  - condition: has_role
+    value: TA
+- id: 447538332730261524
+  name: Staff
+  if:
+  - condition: has_role
+    value: EC
+  - condition: has_role
+    value: FE
+  - condition: has_role
+    value: WM
+- id: 856059220629782528
+  name: Training Staff
+  if:
+  - condition: has_role
+    value: INS
+  - condition: has_role
+    value: MTR
+- id: 755601811427033128
+  name: FE Team
+  if:
+  - condition: has_role
+    value: facilities
+  - condition: has_role
+    value: FE
+- id: 759899335311228969
+  name: Events Team
+  if:
+  - condition: has_role
+    value: events
+  - condition: has_role
+    value: EC
+- id: 479850679855480843
+  name: Members
+  if:
+  - condition: controller_type
+    value: home
+- id: 479850869949595679
+  name: Visitors
+  if:
+  - condition: controller_type
+    value: visitor
+- id: 486356252281012225
+  name: Guest
+  if:
+  - condition: controller_type
+    value: none
+  - condition: unknown
+    value: true
+- id: 712839474433884222
+  name: ADM
+  if:
+  - condition: rating
+    value: ADM
+- id: 712839474509250572
+  name: SUP
+  if:
+  - condition: rating
+    value: SUP
+- id: 712839475369082880
+  name: I3
+  if:
+  - condition: rating
+    value: I3
+- id: 712839475734118460
+  name: I1
+  if:
+  - condition: rating
+    value: I1
+- id: 712839476056948786
+  name: C3
+  if:
+  - condition: rating
+    value: C3
+- id: 712839476153417730
+  name: C1
+  if:
+  - condition: rating
+    value: C1
+- id: 712839476828962906
+  name: S3
+  if:
+  - condition: rating
+    value: S3
+- id: 712839477235810374
+  name: S2
+  if:
+  - condition: rating
+    value: S2
+- id: 712839477575417877
+  name: S1
+  if:
+  - condition: rating
+    value: S1
+- id: 856059249881120769
+  name: OBS
+  if:
+  - condition: rating
+    value: OBS

@@ -23,9 +23,11 @@ import (
 
 	"github.com/adh-partnership/api/pkg/database/dto"
 	"github.com/bwmarrin/discordgo"
+
+	"github.com/vpaza/bot/internal/facility"
 )
 
-func postAnnouncement(s *discordgo.Session, i *discordgo.InteractionCreate, event *dto.EventsResponse) {
+func postAnnouncement(s *discordgo.Session, i *discordgo.InteractionCreate, event *dto.EventsResponse, f *facility.Facility) {
 	message := &discordgo.MessageEmbed{
 		Author: &discordgo.MessageEmbedAuthor{},
 		Color:  0x00ff00,
@@ -42,7 +44,7 @@ func postAnnouncement(s *discordgo.Session, i *discordgo.InteractionCreate, even
 			},
 			{
 				Name:   "Description",
-				Value:  event.Description,
+				Value:  formatDescription(event.Description),
 				Inline: false,
 			},
 		},
@@ -51,6 +53,7 @@ func postAnnouncement(s *discordgo.Session, i *discordgo.InteractionCreate, even
 		},
 		Timestamp: time.Now().Format(time.RFC3339),
 		Title:     event.Title,
+		URL:       fmt.Sprintf("%s/events/%d", f.BaseURL, event.ID),
 		Footer: &discordgo.MessageEmbedFooter{
 			Text: "END OF LINE.",
 		},
@@ -61,7 +64,7 @@ func postAnnouncement(s *discordgo.Session, i *discordgo.InteractionCreate, even
 	}
 }
 
-func postPositions(s *discordgo.Session, i *discordgo.InteractionCreate, event *dto.EventsResponse) {
+func postPositions(s *discordgo.Session, i *discordgo.InteractionCreate, event *dto.EventsResponse, f *facility.Facility) {
 	if len(event.Positions) > 25 {
 		postPositionsSplit(s, i, event)
 		return
@@ -94,6 +97,7 @@ func postPositions(s *discordgo.Session, i *discordgo.InteractionCreate, event *
 		Image: &discordgo.MessageEmbedImage{
 			URL: event.Banner,
 		},
+		URL:    fmt.Sprintf("%s/events/%d", f.BaseURL, event.ID),
 		Fields: []*discordgo.MessageEmbedField{},
 	}
 	for _, v := range event.Positions {
@@ -196,4 +200,11 @@ func getControllerFromUser(user *dto.UserResponse) string {
 	}
 
 	return fmt.Sprintf("<@%s>", user.DiscordID)
+}
+
+func formatDescription(description string) string {
+	if len(description) > 1024 {
+		return description[:1020] + " ..."
+	}
+	return description
 }

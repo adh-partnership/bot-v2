@@ -22,6 +22,7 @@ import (
 
 	"github.com/vpaza/bot/internal/commands/events"
 	"github.com/vpaza/bot/internal/commands/ping"
+	"github.com/vpaza/bot/internal/commands/unknown"
 	"github.com/vpaza/bot/pkg/interactions"
 )
 
@@ -30,6 +31,7 @@ var log = logger.Logger.WithField("component", "commands")
 func SetupCommands() {
 	ping.Register()
 	events.Register()
+	unknown.Register()
 }
 
 func RegisterCommands(s *discordgo.Session, guildid string) error {
@@ -47,7 +49,7 @@ func RegisterCommands(s *discordgo.Session, guildid string) error {
 	}
 
 	for _, command := range interactions.GetCommands() {
-		log.Infof("Registering command %s", command.Name)
+		log.Infof("Registering command %s in %s", command.Name, guildid)
 		appCommand, err := s.ApplicationCommandCreate(s.State.User.ID, guildid, command.AppCommand)
 		if err != nil {
 			return err

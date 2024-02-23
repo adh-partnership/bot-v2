@@ -20,16 +20,14 @@ import (
 	"fmt"
 
 	"github.com/bwmarrin/discordgo"
-
-	"github.com/vpaza/bot/pkg/cache"
 )
 
 func (f *Facility) GetOwnerID(s *discordgo.Session) string {
-	b, err := cache.Get(
+	b, err := f.cache.Get(
 		fmt.Sprintf("/%s/owner", f.Facility),
 	)
 	if err == nil {
-		return string(b)
+		return b.(string)
 	}
 
 	g, err := s.Guild(f.DiscordID)

@@ -19,17 +19,18 @@ package facility
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/adh-partnership/api/pkg/database/dto"
 
-	"github.com/vpaza/bot/pkg/cache"
 	"github.com/vpaza/bot/pkg/network"
 )
 
 var ErrUserNotFound = fmt.Errorf("user not found")
 
 func (f *Facility) GetRoster() []*dto.UserResponse {
-	content, err := cache.Get(
+	var content []byte
+	icontent, err := f.cache.Get(
 		fmt.Sprintf("/%s/roster", f.Facility),
 	)
 	if err != nil {
@@ -51,13 +52,16 @@ func (f *Facility) GetRoster() []*dto.UserResponse {
 			return nil
 		}
 
-		err = cache.Set(
+		err = f.cache.Set(
 			fmt.Sprintf("/%s/roster", f.Facility),
-			content,
+			string(content),
+			time.Minute*3,
 		)
 		if err != nil {
 			log.Errorf("Failed to cache %s roster: %s", f.Facility, err)
 		}
+	} else {
+		content = []byte(icontent.(string))
 	}
 
 	var roster []*dto.UserResponse

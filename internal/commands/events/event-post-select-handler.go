@@ -87,8 +87,8 @@ func EventPostSelectHandler(s *discordgo.Session, i *discordgo.InteractionCreate
 
 	switch val.Type {
 	case "announce":
-		postAnnouncement(s, i, event)
+		postAnnouncement(s, i, event, f)
 	case "position":
-		postPositions(s, i, event)
+		postPositions(s, i, event, f)
 	}
 }

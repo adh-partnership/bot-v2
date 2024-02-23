@@ -26,92 +26,92 @@ staff_title_separator: "/"
 # Position table, used for the who's online embedded message
 # that will be posted to the positions_channel
 positions:
-  - name: Enroute
-    callsigns:
-      prefix: ["FTW"]
-      suffix: ["CTR"]
-  - name: D10 TRACON
-    callsigns:
-      prefix: ["REG"]
-      suffix: ["APP", "DEP"]
-  - name: OKC TRACON
-    callsigns:
-      prefix: ["OKC"]
-      suffix: ["APP", "DEP"]
-  - name: Other TRACON
-    callsigns:
-      prefix:
-        - SPS
-        - ABI
-        - SJT
-        - LBB
-        - MAF
-        - SHV
-        - GGG
-        - ACT
-        - LTS
-        - MLU
-        - FSI
-        - GRK
-      suffix: ["APP", "DEP"]
-  - name: DFW Cab
-    callsigns:
-      prefix: ["DFW"]
-      suffix: ["TWR", "GND", "DEL"]
-  - name: DAL Cab
-    callsigns:
-      prefix: ["DAL"]
-      suffix: ["TWR", "GND", "DEL"]
-  - name: OKC Cab
-    callsigns:
-      prefix: ["OKC"]
-      suffix: ["TWR", "GND", "DEL"]
-  - name: Other Cabs
-    callsigns:
-      prefix:
-        - ACT
-        - LBB
-        - ABM
-        - ADM
-        - ADS
-        - AFW
-        - BAD
-        - CNW
-        - CSM
-        - DTO
-        - DTN
-        - DYS
-        - FSI
-        - FTW
-        - FWS
-        - GGG
-        - GKY
-        - GPM
-        - GRK
-        - GVT
-        - GYI
-        - HLR
-        - HQZ
-        - HOB
-        - LAW
-        - LTS
-        - MAF
-        - MLU
-        - NFW
-        - OUN
-        - PWA
-        - RBD
-        - SHV
-        - SJT
-        - SPS
-        - TIK
-        - TKI
-        - TXK
-        - TYR
-      suffix:
-        - TWR
-        - GND
-        - DEL
+- name: Enroute
+  callsigns:
+    prefix: ["FTW"]
+    suffix: ["CTR"]
+- name: D10 TRACON
+  callsigns:
+    prefix: ["REG"]
+    suffix: ["APP", "DEP"]
+- name: OKC TRACON
+  callsigns:
+    prefix: ["OKC"]
+    suffix: ["APP", "DEP"]
+- name: Other TRACON
+  callsigns:
+    prefix:
+    - SPS
+    - ABI
+    - SJT
+    - LBB
+    - MAF
+    - SHV
+    - GGG
+    - ACT
+    - LTS
+    - MLU
+    - FSI
+    - GRK
+    suffix: ["APP", "DEP"]
+- name: DFW Cab
+  callsigns:
+    prefix: ["DFW"]
+    suffix: ["TWR", "GND", "DEL"]
+- name: DAL Cab
+  callsigns:
+    prefix: ["DAL"]
+    suffix: ["TWR", "GND", "DEL"]
+- name: OKC Cab
+  callsigns:
+    prefix: ["OKC"]
+    suffix: ["TWR", "GND", "DEL"]
+- name: Other Cabs
+  callsigns:
+    prefix:
+    - ACT
+    - LBB
+    - ABM
+    - ADM
+    - ADS
+    - AFW
+    - BAD
+    - CNW
+    - CSM
+    - DTO
+    - DTN
+    - DYS
+    - FSI
+    - FTW
+    - FWS
+    - GGG
+    - GKY
+    - GPM
+    - GRK
+    - GVT
+    - GYI
+    - HLR
+    - HQZ
+    - HOB
+    - LAW
+    - LTS
+    - MAF
+    - MLU
+    - NFW
+    - OUN
+    - PWA
+    - RBD
+    - SHV
+    - SJT
+    - SPS
+    - TIK
+    - TKI
+    - TXK
+    - TYR
+    suffix:
+    - TWR
+    - GND
+    - DEL
 # The ID number of the channel to post the who's online message to
 # This channel should ideally be setup so only the bot posts to it
 online_channel: 1180357341598728232
@@ -129,116 +129,116 @@ no_controllers_online_message: |
 # - rating: Checks user rating (S1, S2, etc)
 # - unknown: Checks if the account is linked on the roster
 roles:
-  - id: 767785144299159602 # Role ID
-    name: Senior Staff # Role Name (primarily for logging)
-    if: # Conditions evaluated as a logical OR
-      - condition: has_role
-        value: ATM
-      - condition: has_role
-        value: DATM
-      - condition: has_role
-        value: TA
-  - id: 767820940875923496
-    name: ARTCC Staff
-    if:
-      - condition: has_role
-        value: EC
-      - condition: has_role
-        value: FE
-      - condition: has_role
-        value: WM
-  - id: 767832523169857586
-    name: Training Staff
-    if:
-      - condition: has_role
-        value: INS
-      - condition: has_role
-        value: MTR
-  - id: 1155986746476068885
-    name: FE Team
-    if:
-      - condition: has_role
-        value: facilities
-  - id: 914985333798604840
-    name: Events Team
-    if:
-      - condition: has_role
-        value: events
-  - id: 768339697847762945
-    name: Instructors
-    if:
-      - condition: has_role
-        value: INS
-  - id: 767831791997550642
-    name: Mentors
-    if:
-      - condition: has_role
-        value: MTR
-  - id: 767828062217044008
-    name: ZFW Controller
-    if:
-      - condition: controller_type
-        value: home
-  - id: 768338311261323264
-    name: Visiting Controller
-    if:
-      - condition: controller_type
-        value: visitor
-  - id: 768336777491644436
-    name: ZFW Guest
-    if:
-      - condition: controller_type
-        value: none
-  - id: 767831020447203348
-    name: Observer
-    if:
-      - condition: rating
-        value: OBS
-  - id: 767831019826446377
-    name: Student 1
-    if:
-      - condition: rating
-        value: S1
-  - id: 767831019242913792
-    name: Student 2
-    if:
-      - condition: rating
-        value: S2
-  - id: 767831018748510208
-    name: Student 3
-    if:
-      - condition: rating
-        value: S3
-  - id: 767831018089742367
-    name: Controller 1
-    if:
-      - condition: rating
-        value: C1
-  - id: 767831017322840105
-    name: Controller 3
-    if:
-      - condition: rating
-        value: C3
-  - id: 767831775375392838
-    name: Instructor 1
-    if:
-      - condition: rating
-        value: I1
-  - id: 767831774411227156
-    name: Instructor 3
-    if:
-      - condition: rating
-        value: I3
-  - id: 767831016562884659
-    name: Supervisor
-    if:
-      - condition: rating
-        value: SUP
-  - id: 767831016089321492
-    name: Administrator
-    if:
-      - condition: rating
-        value: ADM
+- id: 767785144299159602 # Role ID
+  name: Senior Staff # Role Name (primarily for logging)
+  if: # Conditions evaluated as a logical OR
+  - condition: has_role
+    value: ATM
+  - condition: has_role
+    value: DATM
+  - condition: has_role
+    value: TA
+- id: 767820940875923496
+  name: ARTCC Staff
+  if:
+  - condition: has_role
+    value: EC
+  - condition: has_role
+    value: FE
+  - condition: has_role
+    value: WM
+- id: 767832523169857586
+  name: Training Staff
+  if:
+  - condition: has_role
+    value: INS
+  - condition: has_role
+    value: MTR
+- id: 1155986746476068885
+  name: FE Team
+  if:
+  - condition: has_role
+    value: facilities
+- id: 914985333798604840
+  name: Events Team
+  if:
+  - condition: has_role
+    value: events
+- id: 768339697847762945
+  name: Instructors
+  if:
+  - condition: has_role
+    value: INS
+- id: 767831791997550642
+  name: Mentors
+  if:
+  - condition: has_role
+    value: MTR
+- id: 767828062217044008
+  name: ZFW Controller
+  if:
+  - condition: controller_type
+    value: home
+- id: 768338311261323264
+  name: Visiting Controller
+  if:
+  - condition: controller_type
+    value: visitor
+    #  - id: 768336777491644436
+    #    name: ZFW Guest
+    #    if:
+    #      - condition: controller_type
+    #        value: none
+- id: 767831020447203348
+  name: Observer
+  if:
+  - condition: rating
+    value: OBS
+- id: 767831019826446377
+  name: Student 1
+  if:
+  - condition: rating
+    value: S1
+- id: 767831019242913792
+  name: Student 2
+  if:
+  - condition: rating
+    value: S2
+- id: 767831018748510208
+  name: Student 3
+  if:
+  - condition: rating
+    value: S3
+- id: 767831018089742367
+  name: Controller 1
+  if:
+  - condition: rating
+    value: C1
+- id: 767831017322840105
+  name: Controller 3
+  if:
+  - condition: rating
+    value: C3
+- id: 767831775375392838
+  name: Instructor 1
+  if:
+  - condition: rating
+    value: I1
+- id: 767831774411227156
+  name: Instructor 3
+  if:
+  - condition: rating
+    value: I3
+- id: 767831016562884659
+  name: Supervisor
+  if:
+  - condition: rating
+    value: SUP
+- id: 767831016089321492
+  name: Administrator
+  if:
+  - condition: rating
+    value: ADM
 # Base URL of the API
 # Note that the Bot will use this API to fetch event information for the /event
 # slash command as well as the roster. The API, if not ADH Partnership's API
@@ -247,3 +247,4 @@ roles:
 #
 # ADH Partnership's Swagger Docs can be accessed at https://api.zanartcc.org
 api: https://api.zfwartcc.net
+base_url: https://www.zfwartcc.net

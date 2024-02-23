@@ -2,122 +2,116 @@ facility: ZLC
 bot_name: ZLC Bot
 description: Salt Lake City ARTCC
 discord_id: "511898647013752841"
-name_format: first_last_initial
+name_format: first_last_initial_oi
 api: https://api.zlcartcc.org
+base_url: https://www.zlcartcc.org
 show_online: true
-online_channel: "1148188961387335818"
+online_channel: "1149365437092605973"
 positions:
-  - name: Enroute
-    callsigns:
-      prefix:
-        - SLC
-      suffix:
-        - CTR
-  - name: S56 TRACON
-    callsigns:
-      prefix:
-        - SLC
-      suffix:
-        - APP
-        - DEP
-  - name: Other Terminal Radars
-    callsigns:
-      prefix:
-        - BIL
-        - BOI
-        - BZN
-        - GTF
-        - HLN
-        - MSO
-        - TWF
-      suffix:
-        - APP
-        - DEP
-  - name: Cab Positions
-    callsigns:
-      prefix:
-        - BIL
-        - BOI
-        - BZN
-        - GPI
-        - GTF
-        - HIF
-        - HLN
-        - IDA
-        - JAC
-        - MSO
-        - MUO
-        - OGD
-        - PIH
-        - PVU
-        - SLC
-        - SUN
-        - TWF
-      suffix:
-        - TWR
-        - GND
-        - DEL
+- name: Enroute
+  callsigns:
+    prefix:
+    - SLC
+    suffix:
+    - CTR
+- name: S56 TRACON
+  callsigns:
+    prefix:
+    - SLC
+    suffix:
+    - APP
+    - DEP
+- name: Other Terminal Radars
+  callsigns:
+    prefix:
+    - BIL
+    - BOI
+    - BZN
+    - GTF
+    - HLN
+    - MSO
+    - TWF
+    suffix:
+    - APP
+    - DEP
+- name: Cab Positions
+  callsigns:
+    prefix:
+    - BIL
+    - BOI
+    - BZN
+    - GPI
+    - GTF
+    - HIF
+    - HLN
+    - IDA
+    - JAC
+    - MSO
+    - MUO
+    - OGD
+    - PIH
+    - PVU
+    - SLC
+    - SUN
+    - TWF
+    suffix:
+    - TWR
+    - GND
+    - DEL
 roles:
-  - id: 1134983564866363433
-    name: Senior Staff
-    if:
-      - condition: has_role
-        value: ATM
-      - condition: has_role
-        value: DATM
-      - condition: has_role
-        value: TA
-  - id: 513554610758090795
-    name: Staff
-    if:
-      - condition: has_role
-        value: EC
-      - condition: has_role
-        value: FE
-      - condition: has_role
-        value: WM
-  - id: 513554244209475614
-    name: Training Staff
-    if:
-      - condition: has_role
-        value: INS
-      - condition: has_role
-        value: MTR
-  - id: 1136180323944771635
-    name: FE Team
-    if:
-      - condition: has_role
-        value: facilities
-      - condition: has_role
-        value: FE
-  - id: 1135772072862290012
-    name: Events Team
-    if:
-      - condition: has_role
-        value: events
-      - condition: has_role
-        value: EC
-  - id: 1135774959684296737
-    name: Web Team
-    if:
-      - condition: has_role
-        value: web
-      - condition: has_role
-        value: WM
-  - id: 1134983397639475242
-    name: Members
-    if:
-      - condition: controller_type
-        value: home
-  - id: 816061229919371294
-    name: Visitors
-    if:
-      - condition: controller_type
-        value: visit
-  - id: 632999993753468939
-    name: Guest
-    if:
-      - condition: controller_type
-        value: none
-      - condition: unknown
-        value: true
+- id: 1134983564866363433
+  name: Senior Staff
+  if:
+  - condition: has_role
+    value: ATM
+  - condition: has_role
+    value: DATM
+  - condition: has_role
+    value: TA
+- id: 513554610758090795
+  name: Staff
+  if:
+  - condition: has_role
+    value: EC
+  - condition: has_role
+    value: FE
+  - condition: has_role
+    value: WM
+- id: 513554244209475614
+  name: Training Staff
+  if:
+  - condition: has_role
+    value: INS
+  - condition: has_role
+    value: MTR
+- id: 1136180323944771635
+  name: FE Team
+  if:
+  - condition: has_role
+    value: facilities
+  - condition: has_role
+    value: FE
+- id: 1135772072862290012
+  name: Events Team
+  if:
+  - condition: has_role
+    value: events
+  - condition: has_role
+    value: EC
+- id: 1134983397639475242
+  name: Members
+  if:
+  - condition: controller_type
+    value: home
+- id: 816061229919371294
+  name: Visitors
+  if:
+  - condition: controller_type
+    value: visitor
+- id: 632999993753468939
+  name: Guest
+  if:
+  - condition: controller_type
+    value: none
+  - condition: unknown
+    value: true

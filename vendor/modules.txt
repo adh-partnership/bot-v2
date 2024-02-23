@@ -1,7 +1,7 @@
 # dario.cat/mergo v1.0.0
 ## explicit; go 1.13
 dario.cat/mergo
-# github.com/adh-partnership/api v0.0.0-20240201055035-cce469b6e9c2
+# github.com/adh-partnership/api v0.0.0-20240222035526-0ad4d90a44d4
 ## explicit; go 1.21
 github.com/adh-partnership/api/pkg/config
 github.com/adh-partnership/api/pkg/database
@@ -13,12 +13,10 @@ github.com/adh-partnership/api/pkg/network
 github.com/adh-partnership/api/pkg/network/vatsim
 # github.com/allegro/bigcache/v3 v3.1.0
 ## explicit; go 1.16
-github.com/allegro/bigcache/v3
-github.com/allegro/bigcache/v3/queue
 # github.com/antonfisher/nested-logrus-formatter v1.3.1
 ## explicit
 github.com/antonfisher/nested-logrus-formatter
-# github.com/bwmarrin/discordgo v0.27.2-0.20240104191117-afc57886f91a
+# github.com/bwmarrin/discordgo v0.27.2-0.20240216140604-15ef2a43d47f
 ## explicit; go 1.13
 github.com/bwmarrin/discordgo
 # github.com/cespare/xxhash/v2 v2.2.0

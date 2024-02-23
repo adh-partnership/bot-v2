@@ -22,6 +22,7 @@ import (
 	"os"
 
 	"github.com/adh-partnership/api/pkg/logger"
+	"github.com/vpaza/bot/pkg/cache"
 	"sigs.k8s.io/yaml"
 )
 
@@ -35,6 +36,7 @@ type Facility struct {
 	StaffTitleSeparator        string `json:"staff_title_separator"`
 	RosterAPI                  string `json:"roster_api"`
 	API                        string `json:"api"`
+	BaseURL                    string `json:"base_url"`
 	ShowOnline                 string `json:"show_online"`
 	OnlineChannel              string `json:"online_channel"`
 	NoControllersOnlineMessage string `json:"no_controllers_online_message"`
@@ -53,6 +55,13 @@ type Facility struct {
 			Value     string `json:"value"`
 		} `json:"if"`
 	} `json:"roles"`
+	UnknownControllers *struct {
+		Enabled      bool `json:"enabled"`
+		TempDisabled bool
+		Channel      string `json:"channel"`
+		RoleID       string `json:"role_id"`
+	}
+	cache *cache.Cache
 }
 
 var FacCfg map[string]*Facility
@@ -77,7 +86,7 @@ func FindFacility(f *Facility) (*Facility, error) {
 	return nil, ErrorFacilityNotFound
 }
 
-func ParseFacilityConfig(file string) (*Facility, error) {
+func ParseFacilityConfig(file string, c *cache.Cache) (*Facility, error) {
 	config, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
@@ -94,10 +103,25 @@ func ParseFacilityConfig(file string) (*Facility, error) {
 		logger.Logger.WithField("component", "config").Warnf("Staff format is set to 'all' but no staff title separator is set. Defaulting to '/'")
 	}
 
+	if cfg.UnknownControllers == nil {
+		cfg.UnknownControllers = &struct {
+			Enabled      bool `json:"enabled"`
+			TempDisabled bool
+			Channel      string `json:"channel"`
+			RoleID       string `json:"role_id"`
+		}{
+			Enabled:      false,
+			TempDisabled: false,
+			Channel:      "",
+			RoleID:       "",
+		}
+	}
+
 	if _, ok := FacCfg[cfg.Facility]; ok {
 		return nil, ErrorFacilityExists
 	}
 
+	cfg.cache = c
 	FacCfg[cfg.Facility] = cfg
 
 	return cfg, nil

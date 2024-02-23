@@ -3,8 +3,8 @@ module github.com/vpaza/bot
 go 1.21
 
 require (
-	github.com/adh-partnership/api v0.0.0-20240201055035-cce469b6e9c2
-	github.com/bwmarrin/discordgo v0.27.2-0.20240104191117-afc57886f91a
+	github.com/adh-partnership/api v0.0.0-20240222035526-0ad4d90a44d4
+	github.com/bwmarrin/discordgo v0.27.2-0.20240216140604-15ef2a43d47f
 	github.com/go-co-op/gocron v1.37.0
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/urfave/cli/v2 v2.27.1

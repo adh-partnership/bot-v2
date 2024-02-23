@@ -32,6 +32,12 @@ import (
 
 var uolog = logger.Logger.WithField("component", "jobs/updateonline")
 
+var unknownControllers map[string]map[string]bool
+
+func init() {
+	unknownControllers = make(map[string]map[string]bool)
+}
+
 func UpdateOnline() {
 	if discord == nil || !discord.DataReady {
 		log.Infof("Discord data not ready, skipping UpdateGuilds job")
@@ -56,26 +62,40 @@ func updateOnline(f *facility.Facility, data *vatsim.VATSIMData) {
 	start := time.Now()
 
 	online := make(map[string][]string)
+	newUnknown := make(map[string]bool)
 
 	for _, p := range f.Positions {
 		online[p.Name] = []string{}
 	}
 
 	for _, c := range data.Controllers {
+		if f.UnknownControllers.Enabled && !f.UnknownControllers.TempDisabled && !isRostered(f, fmt.Sprint(c.CID)) {
+			if _, ok := unknownControllers[f.Facility][genIndex(c)]; !ok {
+				_, err := bot.GetSession().ChannelMessageSend(f.UnknownControllers.Channel, fmt.Sprintf("Unrostered controller on %s, %s (%d)", c.Callsign, c.Name, c.CID))
+				if err != nil {
+					uolog.Errorf("Error sending message: %s", err)
+				}
+				newUnknown[genIndex(c)] = true
+			}
+		}
+
 		group := findGroup(f, c.Callsign)
 		if group != "" {
 			online[group] = append(
 				online[group],
 				fmt.Sprintf(
-					"%s - %s - %s - %s",
+					"%s - %s - %s - <t:%d:R>",
 					c.Callsign,
 					getOI(f, fmt.Sprint(c.CID)),
 					c.Frequency,
-					time.Since(*c.LogonTime).Round(time.Second).String(),
+					c.LogonTime.Unix(),
 				),
 			)
 		}
 	}
+
+	// a little expensive ops wise, but ensures we clear out dropped connections
+	unknownControllers[f.Facility] = newUnknown
 
 	message := &discordgo.MessageEmbed{
 		Author:    &discordgo.MessageEmbedAuthor{},
@@ -131,6 +151,15 @@ func findGroup(f *facility.Facility, callsign string) string {
 		}
 	}
 	return ""
+}
+
+func genIndex(c *vatsim.VATSIMController) string {
+	return fmt.Sprintf("%d/%s", c.CID, c.Callsign)
+}
+
+func isRostered(f *facility.Facility, cid string) bool {
+	_, err := f.FindUserByCID(cid)
+	return err == nil
 }
 
 func getOI(f *facility.Facility, cid string) string {

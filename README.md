@@ -202,6 +202,17 @@ roles:
 #
 # ADH Partnership's Swagger Docs can be accessed at https://api.zanartcc.org
 api: https://api.zanartcc.org
+# Base URL of Front End
+base_url: https://www.zanartcc.org
+# If you want to handle unknown controller notifications from the bot, define this:
+unknown_controllers:
+  # Set enabled to true to enable the feature, when this is true will also enable the
+  # /unknown slash command to toggle this feature during runtime
+  enabled: true
+  # The channel ID to send the notifications to, ideally should be a senior staff only channel
+  channel: "123456789012345678"
+  # The role ID that can use the slash command
+  role_id: "123456789012345678"
 ```
 
 ## Running
