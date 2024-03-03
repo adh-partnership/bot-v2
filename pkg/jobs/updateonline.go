@@ -19,6 +19,7 @@ package jobs
 import (
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/adh-partnership/api/pkg/logger"
@@ -33,6 +34,7 @@ import (
 var uolog = logger.Logger.WithField("component", "jobs/updateonline")
 
 var unknownControllers map[string]map[string]bool
+var ucmut = &sync.RWMutex{}
 
 func init() {
 	unknownControllers = make(map[string]map[string]bool)
@@ -70,6 +72,7 @@ func updateOnline(f *facility.Facility, data *vatsim.VATSIMData) {
 
 	for _, c := range data.Controllers {
 		if f.UnknownControllers.Enabled && !f.UnknownControllers.TempDisabled && !isRostered(f, fmt.Sprint(c.CID)) {
+			ucmut.RLock()
 			if _, ok := unknownControllers[f.Facility][genIndex(c)]; !ok {
 				_, err := bot.GetSession().ChannelMessageSend(f.UnknownControllers.Channel, fmt.Sprintf("Unrostered controller on %s, %s (%d)", c.Callsign, c.Name, c.CID))
 				if err != nil {
@@ -77,6 +80,7 @@ func updateOnline(f *facility.Facility, data *vatsim.VATSIMData) {
 				}
 				newUnknown[genIndex(c)] = true
 			}
+			ucmut.RUnlock()
 		}
 
 		group := findGroup(f, c.Callsign)
@@ -95,7 +99,9 @@ func updateOnline(f *facility.Facility, data *vatsim.VATSIMData) {
 	}
 
 	// a little expensive ops wise, but ensures we clear out dropped connections
+	ucmut.Lock()
 	unknownControllers[f.Facility] = newUnknown
+	ucmut.Unlock()
 
 	message := &discordgo.MessageEmbed{
 		Author:    &discordgo.MessageEmbedAuthor{},
