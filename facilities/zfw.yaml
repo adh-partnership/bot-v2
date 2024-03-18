@@ -129,15 +129,15 @@ no_controllers_online_message: |
 # - rating: Checks user rating (S1, S2, etc)
 # - unknown: Checks if the account is linked on the roster
 roles:
-- id: 767785144299159602 # Role ID
-  name: Senior Staff # Role Name (primarily for logging)
-  if: # Conditions evaluated as a logical OR
-  - condition: has_role
-    value: ATM
-  - condition: has_role
-    value: DATM
-  - condition: has_role
-    value: TA
+- #id: 767785144299159602 # Role ID
+  #name: Senior Staff # Role Name (primarily for logging)
+  #if: # Conditions evaluated as a logical OR
+  - #condition: has_role
+    #value: ATM
+  - #condition: has_role
+    #value: DATM
+  - #condition: has_role
+    #value: TA
 - id: 767820940875923496
   name: ARTCC Staff
   if:
