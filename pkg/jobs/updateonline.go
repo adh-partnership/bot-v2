@@ -33,8 +33,10 @@ import (
 
 var uolog = logger.Logger.WithField("component", "jobs/updateonline")
 
-var unknownControllers map[string]map[string]bool
-var ucmut = &sync.RWMutex{}
+var (
+	unknownControllers map[string]map[string]bool
+	ucmut              = &sync.RWMutex{}
+)
 
 func init() {
 	unknownControllers = make(map[string]map[string]bool)
