@@ -2,11 +2,13 @@ facility: ZLC
 bot_name: ZLC Bot
 description: Salt Lake City ARTCC
 discord_id: "511898647013752841"
-name_format: first_last_initial_oi
+name_format: first_last
 api: https://api.zlcartcc.org
 base_url: https://www.zlcartcc.org
 show_online: true
 online_channel: "1149365437092605973"
+staff_format: highest
+staff_title_separator: "|"
 positions:
 - name: Enroute
   callsigns:
@@ -85,7 +87,7 @@ roles:
   - condition: has_role
     value: MTR
 - id: 1136180323944771635
-  name: FE Team
+  name: Facilities Team
   if:
   - condition: has_role
     value: facilities
@@ -98,13 +100,63 @@ roles:
     value: events
   - condition: has_role
     value: EC
+- id: 1227687412059213854
+  name: Observer
+  if:
+  - condition: rating
+    value: OBS
+- id: 1230697857120473138
+  name: Developing Controller
+  if:
+  - condition: rating
+    value: S1
+- id: 1230698558953361448
+  name: Aerodrome Controller
+  if:
+  - condition: rating
+    value: S2
+- id: 1230698614540468225
+  name: Terminal Controller
+  if:
+  - condition: rating
+    value: S3
+- id: 1230698655816613898
+  name: Enroute Controller
+  if:
+  - condition: rating
+    value: C1
+- id: 1230698716047085619
+  name: Senior Controller
+  if:
+  - condition: rating
+    value: C3
+- id: 1230698772846346291
+  name: Instructor
+  if:
+  - condition: rating
+    value: I1
+- id: 1230698808015323197
+  name: Senior Instructor
+  if:
+  - condition: rating
+    value: I3
+- id: 1230698845974040596
+  name: Supervisor
+  if:
+  - condition: rating
+    value: SUP
+- id: 1230698879775674399
+  name: Administrator
+  if:
+  - condition: rating
+    value: ADM
 - id: 1134983397639475242
-  name: Members
+  name: Home Controller
   if:
   - condition: controller_type
     value: home
 - id: 816061229919371294
-  name: Visitors
+  name: Visiting Controller
   if:
   - condition: controller_type
     value: visitor
