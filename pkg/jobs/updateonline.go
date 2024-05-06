@@ -31,10 +31,11 @@ import (
 	"github.com/vpaza/bot/pkg/utils"
 )
 
-var uolog = logger.Logger.WithField("component", "jobs/updateonline")
-
-var unknownControllers map[string]map[string]bool
-var ucmut = &sync.RWMutex{}
+var (
+	uolog              = logger.Logger.WithField("component", "jobs/updateonline")
+	unknownControllers map[string]map[string]bool
+	ucmut              = &sync.RWMutex{}
+)
 
 func init() {
 	unknownControllers = make(map[string]map[string]bool)
