@@ -31,9 +31,8 @@ import (
 	"github.com/vpaza/bot/pkg/utils"
 )
 
-var uolog = logger.Logger.WithField("component", "jobs/updateonline")
-
 var (
+	uolog              = logger.Logger.WithField("component", "jobs/updateonline")
 	unknownControllers map[string]map[string]bool
 	ucmut              = &sync.RWMutex{}
 )

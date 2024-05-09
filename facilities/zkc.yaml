@@ -1,0 +1,190 @@
+facility: ZKC
+bot_name: ZKC Bot
+description: Kansas City ARTCC
+discord_id: 1234680853213216850
+name_format: first_last_initial_oi
+staff_format: highest
+staff_title_separator: "/"
+positions:
+- name: Enroute
+  callsigns:
+    prefix: ["MCI"]
+    suffix: ["CTR"]
+- name: T75 TRACON
+  callsigns:
+    prefix: ["STL"]
+    suffix: ["APP", "DEP"]
+- name: MCI TRACON
+  callsigns:
+    prefix: ["MCI"]
+    suffix: ["APP", "DEP"]
+- name: Other Radar
+  callsigns:
+    prefix:
+    - ICT
+    - TUL
+    - SGF
+    - SPI
+    suffix: ["APP", "DEP"]
+- name: Cabs
+  callsigns:
+    prefix:
+    - GCK
+    - SLN
+    - MHK
+    - FRI
+    - HUT
+    - ICT
+    - IAB
+    - BEC
+    - END
+    - WDG
+    - SWO
+    - TUL
+    - RVS
+    - TOP
+    - FOE
+    - STJ
+    - MCI
+    - MKC
+    - IXD
+    - OJC
+    - JLN
+    - SGF
+    - TBN
+    - JEF
+    - COU
+    - SPI
+    - SUS
+    - STL
+    - ALN
+    - CPS
+    - BLV
+    - MDH
+    - MWA
+    - DEC
+    suffix:
+    - TWR
+    - GND
+    - DEL
+online_channel: 1234680854417117321
+no_controllers_online_message: |
+  No one is online currently.
+roles:
+- id: 1234680853246906496
+  name: Senior Staff
+  if:
+  - condition: has_role
+    value: ATM
+  - condition: has_role
+    value: DATM
+  - condition: has_role
+    value: TA
+- id: 1234680853246906495
+  name: ARTCC Staff
+  if:
+  - condition: has_role
+    value: EC
+  - condition: has_role
+    value: FE
+  - condition: has_role
+    value: WM
+- id: 1234680853246906492
+  name: Training Staff
+  if:
+  - condition: has_role
+    value: INS
+  - condition: has_role
+    value: MTR
+- id: 1234680853246906490
+  name: FE Team
+  if:
+  - condition: has_role
+    value: facilities
+- id: 1234680853246906491
+  name: Events Team
+  if:
+  - condition: has_role
+    value: events
+- id: 1234680853246906489
+  name: Web Team
+  if:
+  - condition: has_role
+    value: web
+- id: 768339697847762945
+  name: Instructors
+  if:
+  - condition: has_role
+    value: INS
+- id: 767831791997550642
+  name: Mentors
+  if:
+  - condition: has_role
+    value: MTR
+- id: 1234680853225803886
+  name: Home Controller
+  if:
+  - condition: controller_type
+    value: home
+- id: 1234680853225803885
+  name: Visiting Controller
+  if:
+  - condition: controller_type
+    value: visitor
+- id: 1234680853225803881
+  name: Guest
+  if:
+  - condition: controller_type
+    value: none
+- id: 1234680853213216854
+  name: Observer
+  if:
+  - condition: rating
+    value: OBS
+- id: 1234680853213216855
+  name: Student 1
+  if:
+  - condition: rating
+    value: S1
+- id: 1234680853213216856
+  name: Student 2
+  if:
+  - condition: rating
+    value: S2
+- id: 1234680853213216857
+  name: Student 3
+  if:
+  - condition: rating
+    value: S3
+- id: 1234680853213216858
+  name: Controller 1
+  if:
+  - condition: rating
+    value: C1
+- id: 1234680853213216859
+  name: Controller 3
+  if:
+  - condition: rating
+    value: C3
+- id: 1234680853225803877
+  name: Instructor 1
+  if:
+  - condition: rating
+    value: I1
+- id: 1234680853225803878
+  name: Instructor 3
+  if:
+  - condition: rating
+    value: I3
+- id: 1234680853225803879
+  name: Supervisor
+  if:
+  - condition: rating
+    value: SUP
+- id: 1234680853225803880
+  name: Administrator
+  if:
+  - condition: rating
+    value: ADM
+api: https://api.zkcartcc.org
+base_url: https://www.zkcartcc.org
