@@ -41,6 +41,7 @@ type Facility struct {
 	ShowOnline                 string `json:"show_online"`
 	OnlineChannel              string `json:"online_channel"`
 	NoControllersOnlineMessage string `json:"no_controllers_online_message"`
+	IgnoreNameControlRole      string `json:"ignore_name_control_role"`
 	Positions                  []struct {
 		Name      string `json:"name"`
 		Callsigns struct {
