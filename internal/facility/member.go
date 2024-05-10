@@ -46,19 +46,14 @@ func (f *Facility) GenerateNameFromUser(u *dto.UserResponse) string {
 }
 
 // Check if the user has the "bot-ignore" role.
-func userHasIgnoreRole(s *discordgo.Session, m *discordgo.Member) (bool, error) {
-	roles, err := s.GuildRoles(m.GuildID)
-	if err != nil {
-		return false, err
+func userHasIgnoreRole(fac *Facility, m *discordgo.Member) bool {
+	if fac.IgnoreNameControlRole == "" {
+		return false
 	}
-	for _, role := range roles {
-		if role.Name == "bot-ignore" {
-			if slices.Contains(m.Roles, role.ID) {
-				return true, nil
-			}
-		}
+	if slices.Contains(m.Roles, fac.IgnoreNameControlRole) {
+		return true
 	}
-	return false, nil
+	return false
 }
 
 func (f *Facility) ProcessMember(s *discordgo.Session, m *discordgo.Member) {
@@ -68,14 +63,15 @@ func (f *Facility) ProcessMember(s *discordgo.Session, m *discordgo.Member) {
 		return
 	}
 
-	userHasIgnoreRole, err := userHasIgnoreRole(s, m)
-	if err != nil {
-		log.Errorf("Could not get guild roles in guild %s: %s", m.GuildID, err)
-		return
+	hasIgnoreRole := false
+	fac, err := FindFacility(&Facility{DiscordID: m.GuildID})
+	if err == nil {
+		hasIgnoreRole = userHasIgnoreRole(fac, m)
 	}
+
 	// If user is has the ignore role, the user is nil, or this is the owner, skip setting names.
 	// For nil we don't have any info to set the name to, and for owners we lack permissions
-	if userHasIgnoreRole || user != nil && f.GetOwnerID(s) != m.User.ID {
+	if hasIgnoreRole || user != nil && f.GetOwnerID(s) != m.User.ID {
 		name := f.GenerateNameFromUser(user)
 		log.Debugf("Nick=%s, Name=%s", m.Nick, name)
 		if m.Nick == "" || name != m.Nick {

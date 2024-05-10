@@ -7,6 +7,7 @@ api: https://api.zdvartcc.org
 base_url: https://www.zdvartcc.org
 show_online: true
 online_channel: "1149342010180907058"
+ignore_name_control_role: "1008900426319536188"
 positions:
 - name: Enroute
   callsigns:
