@@ -1,7 +1,17 @@
-FROM alpine:latest
+ARG BASE_DISTRIBUTION=distroless
 
-RUN apk add --no-cache bash
+FROM golang:1.23 as builder
 
-WORKDIR /app
+WORKDIR /work
+COPY . .
+RUN make build
 
-ADD out /app/
+FROM cgr.dev/chainguard/static:latest as distroless
+FROM ubuntu:20.04 as debug
+
+FROM ${BASE_DISTRIBUTION:-distroless}
+COPY --from=builder /work/out/bot /usr/local/bin/bot
+COPY facilities/ /etc/bot/facilities
+RUN touch /etc/bot/config.yaml
+
+ENTRYPOINT [ "/usr/local/bin/bot", "--config", "/etc/bot/config.yaml", "--facilities", "/etc/bot/facilities" ]

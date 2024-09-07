@@ -1,0 +1,20 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test build binary
+        run: |
+          make build
+      - name: Test build docker image (distroless)
+        run: |
+          BASE_DISTRIBUTION=distroless make docker
+      - name: Test build docker image (debug)
+        run: |
+          BASE_DISTRIBUTION=debug make docker
+      

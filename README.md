@@ -66,43 +66,43 @@ staff_title_separator: "/"
 # Position table, used for the who's online embedded message
 # that will be posted to the positions_channel
 positions:
-- name: Oceanic
-  callsigns:
-  - prefix: ["ZAN"]
-    suffix: ["FSS"]
-- name: Enroute
-  callsigns:
-    prefix: ["ANC"]
-    suffix: ["CTR"]
-- name: A11
-  callsigns:
-    prefix: ["ANC"]
-    suffix: ["APP"]
-- name: FAI TRACON
-  callsigns:
-    prefix: ["FAI"]
-    suffix: ["APP"]
-- name: CAB
-  callsigns:
-    prefix:
-    - ADQ
-    - AKN
-    - ANC
-    - BIG
-    - BET
-    - EIL
-    - EDF
-    - ENA
-    - FAI
-    - FBK
-    - FRN
-    - JNU
-    - LHD
-    - MRI
-    suffix:
-    - TWR
-    - GND
-    - DEL
+  - name: Oceanic
+    callsigns:
+      - prefix: ["ZAN"]
+        suffix: ["FSS"]
+  - name: Enroute
+    callsigns:
+      prefix: ["ANC"]
+      suffix: ["CTR"]
+  - name: A11
+    callsigns:
+      prefix: ["ANC"]
+      suffix: ["APP"]
+  - name: FAI TRACON
+    callsigns:
+      prefix: ["FAI"]
+      suffix: ["APP"]
+  - name: CAB
+    callsigns:
+      prefix:
+        - ADQ
+        - AKN
+        - ANC
+        - BIG
+        - BET
+        - EIL
+        - EDF
+        - ENA
+        - FAI
+        - FBK
+        - FRN
+        - JNU
+        - LHD
+        - MRI
+      suffix:
+        - TWR
+        - GND
+        - DEL
 # The ID number of the channel to post the who's online message to
 # This channel should ideally be setup so only the bot posts to it
 online_channel: 1011814580848177195
@@ -120,80 +120,80 @@ no_controllers_online_message: |
 # - rating: Checks user rating (S1, S2, etc)
 # - unknown: Checks if the account is linked on the roster
 roles:
-- id: 123456789012345678 # Role ID
-  name: ZAN Senior Staff # Role Name (primarily for logging)
-  if: # Conditions evaluated as a logical OR
-  - condition: has_role
-    value: ATM
-  - condition: has_role
-    value: DATM
-  - condition: has_role
-    value: TA
-- id: 123456789012345678
-  name: ZAN Staff
-  if:
-  - condition: has_role
-    value: EC
-  - condition: has_role
-    value: FE
-  - condition: has_role
-    value: WM
-- id: 123456789012345678
-  name: ZAN Assistance Staff
-  if:
-  - condition: has_role
-    value: facilities
-  - condition: has_role
-    value: events
-  - condition: has_role
-    value: web
-- id: 123456789012345678
-  name: Training Team
-  if:
-  - condition: has_role
-    value: INS
-  - condition: has_role
-    value: MTR
-- id: 123456789012345678
-  name: FE Team
-  if:
-  - condition: has_role
-    value: facilities
-- id: 123456789012345678
-  name: Events Team
-  if:
-  - condition: has_role
-    value: events
-- id: 123456789012345678
-  name: Instructors
-  if:
-  - condition: has_role
-    value: INS
-- id: 123456789012345678
-  name: Mentors
-  if:
-  - condition: has_role
-    value: MTR
-- id: 123456789012345678
-  name: ZAN Members
-  if:
-  - condition: controller_type
-    value: home
-- id: 123456789012345678
-  name: Visitors
-  if:
-  - condition: controller_type
-    value: visitor
-- id: 123456789012345678
-  name: Pilot
-  if:
-  - condition: controller_type
-    value: none
-- id: 123456789012345678
-  name: Unverified
-  if:
-  - condition: unknown
-    value: true
+  - id: 123456789012345678 # Role ID
+    name: ZAN Senior Staff # Role Name (primarily for logging)
+    if: # Conditions evaluated as a logical OR
+      - condition: has_role
+        value: ATM
+      - condition: has_role
+        value: DATM
+      - condition: has_role
+        value: TA
+  - id: 123456789012345678
+    name: ZAN Staff
+    if:
+      - condition: has_role
+        value: EC
+      - condition: has_role
+        value: FE
+      - condition: has_role
+        value: WM
+  - id: 123456789012345678
+    name: ZAN Assistance Staff
+    if:
+      - condition: has_role
+        value: facilities
+      - condition: has_role
+        value: events
+      - condition: has_role
+        value: web
+  - id: 123456789012345678
+    name: Training Team
+    if:
+      - condition: has_role
+        value: INS
+      - condition: has_role
+        value: MTR
+  - id: 123456789012345678
+    name: FE Team
+    if:
+      - condition: has_role
+        value: facilities
+  - id: 123456789012345678
+    name: Events Team
+    if:
+      - condition: has_role
+        value: events
+  - id: 123456789012345678
+    name: Instructors
+    if:
+      - condition: has_role
+        value: INS
+  - id: 123456789012345678
+    name: Mentors
+    if:
+      - condition: has_role
+        value: MTR
+  - id: 123456789012345678
+    name: ZAN Members
+    if:
+      - condition: controller_type
+        value: home
+  - id: 123456789012345678
+    name: Visitors
+    if:
+      - condition: controller_type
+        value: visitor
+  - id: 123456789012345678
+    name: Pilot
+    if:
+      - condition: controller_type
+        value: none
+  - id: 123456789012345678
+    name: Unverified
+    if:
+      - condition: unknown
+        value: true
 # Base URL of the API
 # Note that the Bot will use this API to fetch event information for the /event
 # slash command as well as the roster. The API, if not ADH Partnership's API
@@ -242,7 +242,7 @@ Logs will always print for at and above the defined level.
 
 ## Kubernetes Manifests
 
-Not provided. A way to build it is the define a `ConfigMap` to mount for the config yaml, and a configmap to mount as your facilities directories.
+Not provided. A way to build it is the define a `ConfigMap` to mount for the config yaml.
 
 For more information, consult [the Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
 
