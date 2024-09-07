@@ -31,15 +31,15 @@ jobs:
         BASE_DISTRUBITION=debug HUB="${{ env.HUB }}" IMG="${{ env.IMG }}" TAG="${{ env.sha_short }}-debug" make docker
     - name: Push Docker Image
       run: |
-        docker push ${{ env.HUB }}/${IMG}:${{ env.sha_short }}
-        docker push ${{ env.HUB }}/${IMG}:${{ env.sha_short }}-debug
+        docker push ${{ env.HUB }}/${{ env.IMG }}:${{ env.sha_short }}
+        docker push ${{ env.HUB }}/${{ env.IMG }}:${{ env.sha_short }}-debug
     - name: Sign Images
       env:
         COSIGN_PASSWORD: ${{ secrets.COSIGN_PRIVATE_KEY_PASSWORD }}
         COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
       run: |
-        image_digest="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.HUB }}/${IMG}:${{ env.sha_short }})"
-        image_digest_debug="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.HUB }}/${IMG}:${{ env.sha_short }}-debug)"
+        image_digest="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.HUB }}/${{ env.IMG }}:${{ env.sha_short }})"
+        image_digest_debug="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.HUB }}/${{ env.IMG }}:${{ env.sha_short }}-debug)"
 
-        cosign sign -key env://COSIGN_PRIVATE_KEY --yes ${{ env.HUB }}/${IMG}@${image_digest}
-        cosign sign -key env://COSIGN_PRIVATE_KEY --yes ${{ env.HUB }}/${IMG}@${image_digest_debug}
+        cosign sign -key env://COSIGN_PRIVATE_KEY --yes ${image_digest}
+        cosign sign -key env://COSIGN_PRIVATE_KEY --yes ${image_digest_debug}
