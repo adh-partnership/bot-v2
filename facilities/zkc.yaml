@@ -111,16 +111,6 @@ roles:
   if:
   - condition: has_role
     value: web
-- id: 768339697847762945
-  name: Instructors
-  if:
-  - condition: has_role
-    value: INS
-- id: 767831791997550642
-  name: Mentors
-  if:
-  - condition: has_role
-    value: MTR
 - id: 1234680853225803886
   name: Home Controller
   if:
@@ -131,11 +121,13 @@ roles:
   if:
   - condition: controller_type
     value: visitor
-- id: 1234680853225803881
-  name: Guest
-  if:
-  - condition: controller_type
-    value: none
+#- id: 1234680853225803881
+#  name: Guest
+#  if:
+#  - condition: unknown
+#    value: true
+#  - condition: controller_type
+#    value: none
 - id: 1234680853213216854
   name: Observer
   if:
