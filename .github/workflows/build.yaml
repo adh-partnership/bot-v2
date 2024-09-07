@@ -41,5 +41,5 @@ jobs:
         image_digest="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.HUB }}/${{ env.IMG }}:${{ env.sha_short }})"
         image_digest_debug="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.HUB }}/${{ env.IMG }}:${{ env.sha_short }}-debug)"
 
-        cosign sign -key env://COSIGN_PRIVATE_KEY --yes ${image_digest}
-        cosign sign -key env://COSIGN_PRIVATE_KEY --yes ${image_digest_debug}
+        cosign sign --key env://COSIGN_PRIVATE_KEY --yes ${image_digest}
+        cosign sign --key env://COSIGN_PRIVATE_KEY --yes ${image_digest_debug}
