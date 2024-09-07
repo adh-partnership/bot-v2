@@ -1,3 +1,5 @@
+name: "Build"
+
 on:
   push:
     branches: ['master']
@@ -24,7 +26,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build Docker Image
-      run:
+      run: |
         BASE_DISTRIBUTION=distroless HUB="${{ env.HUB }}" IMG="${{ env.IMG }}" TAG="${{ env.sha_short }}" make docker
         BASE_DISTRUBITION=debug HUB="${{ env.HUB }}" IMG="${{ env.IMG }}" TAG="${{ env.sha_short }}-debug" make docker
     - name: Push Docker Image
