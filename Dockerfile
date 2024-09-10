@@ -15,4 +15,4 @@ COPY --from=builder /work/out/bot /usr/local/bin/bot
 COPY --from=builder /work/out/config.yaml /etc/bot/config.yaml
 COPY facilities/ /etc/bot/facilities
 
-ENTRYPOINT [ "/usr/local/bin/bot", "--config", "/etc/bot/config.yaml", "--facilities", "/etc/bot/facilities" ]
+ENTRYPOINT [ "/usr/local/bin/bot", "start", "--config", "/etc/bot/config.yaml", "--facilities", "/etc/bot/facilities" ]
