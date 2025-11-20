@@ -1,6 +1,6 @@
 module github.com/vpaza/bot
 
-go 1.21
+go 1.24.0
 
 require (
 	github.com/adh-partnership/api v0.0.0-20240628203921-56f8c8830808
@@ -11,8 +11,6 @@ require (
 	gorm.io/gorm v1.25.11 // indirect
 	sigs.k8s.io/yaml v1.4.0
 )
-
-require github.com/allegro/bigcache/v3 v3.1.0
 
 require (
 	dario.cat/mergo v1.0.1 // indirect
@@ -31,11 +29,9 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	golang.org/x/crypto v0.27.0 // indirect
-	golang.org/x/net v0.29.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	gorm.io/driver/mysql v1.5.7 // indirect
 	moul.io/http2curl v1.0.0 // indirect
 )
