@@ -12,7 +12,9 @@ positions:
     suffix: ["CTR"]
 - name: T75 TRACON
   callsigns:
-    prefix: ["STL"]
+    prefix:
+    - STL
+    - T75
     suffix: ["APP", "DEP"]
 - name: MCI TRACON
   callsigns:
